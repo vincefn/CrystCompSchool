@@ -1,0 +1,13 @@
+* A computer with OpenCL: native on MacOSX, easy to install on Linux
+* NB: you don't need a GPU to use OpenCL, it can also use the CPU (multi-core)
+* Optionally: CUDA instead of OpenCL
+
+* pyOpenCL:
+    Using pip: 'pip install pyopencl' 
+    or see http://mathema.tician.de/software/pyopencl/
+
+* PyNX:
+    pip install pynx
+    or from http://pynx.sf.net
+    or from https://github.com/vincefn/pynx
+

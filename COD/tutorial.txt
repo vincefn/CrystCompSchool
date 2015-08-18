@@ -1,0 +1,51 @@
+import MySQLdb
+
+# login=cod_reader, no password
+db = MySQLdb.connect("www.crystallography.net","cod_reader","","cod")
+cursor = db.cursor()
+
+cursor.execute("show tables")
+cursor.fetchall()
+
+cursor.execute("show columns from data in cod")
+cursor.fetchall()
+
+
+cursor.execute("select formula from data where formula like '%H2 O2%' ")
+cursor.fetchall()
+
+cursor.execute("select formula from data where title like 'ribose' ")
+cursor.execute("select formula from data where title rlike 'ribose' ")
+cursor.fetchall()
+
+cursor.execute("select formula from data where a>5.2 and a<5.22 ")
+cursor.fetchall()
+
+cursor.execute("select formula,a,file from data where a>5.2 and a<5.22 ")
+r=cursor.fetchall()
+
+# Get the CIF !
+import urllib2
+cif=urllib2.urlopen("http://www.crystallography.net/%s.cif"%(r[-1][-1]), timeout = 5).read()
+
+# regular expressions:
+# Do NOT try this (47391 hits)
+cursor.execute("select formula from data where formula rlike 'H[[:digit:]]' and formula rlike 'O2'")
+#Use LIMIT:
+cursor.execute("select formula from data where formula rlike 'H[[:digit:]]' and formula rlike 'O2' LIMIT 500")
+
+# more selective - 2 elements
+cursor.execute("select formula from data where (formula rlike '[[:blank:]]H[[:digit:]]' or formula rlike '[[:blank:]]H[[:blank:]]') and (formula rlike '[[:blank:]]O[[:digit:]]' or formula rlike '[[:blank:]]O[[:blank:]]') and nel=2 ")
+cursor.fetchall()
+
+# 3 elements
+cursor.execute("select formula from data where (formula rlike '[[:blank:]]H[[:digit:]]' or formula rlike '[[:blank:]]H[[:blank:]]') and (formula rlike '[[:blank:]]O[[:digit:]]' or formula rlike '[[:blank:]]O[[:blank:]]') and nel>=2 and nel<=3 ")
+cursor.fetchall()
+
+# 3 elements, order by formula
+cursor.execute("select formula from data where (formula rlike '[[:blank:]]H[[:digit:]]' or formula rlike '[[:blank:]]H[[:blank:]]') and (formula rlike '[[:blank:]]O[[:digit:]]' or formula rlike '[[:blank:]]O[[:blank:]]') and nel>=2 and nel<=3 order by formula")
+cursor.fetchall()
+
+#C++ example ?
+#See Fox.cpp around line 2800 :
+# https://github.com/vincefn/objcryst/blob/master/Fox/src/Fox.cpp#L2800

@@ -1,0 +1,221 @@
+mysql5 -u cod_reader -h www.crystallography.net -e "show tables from cod"
++------------------+
+| Tables_in_cod    |
++------------------+
+| amcsd_x_cod      |
+| chemspider_x_cod |
+| cod_amcsd        |
+| data             |
+| databases        |
+| dois             |
+| drugbank_x_cod   |
+| fingerprints     |
+| jaltnames        |
+| journals         |
+| jsequences       |
+| messages         |
+| mpod_x_cod       |
+| news             |
+| numbers          |
+| programs         |
+| pubchem_x_cod    |
+| publishers       |
+| rdf_relations    |
+| smiles           |
+| spacegroups      |
+| successors       |
+| validation       |
+| wikipedia_x_cod  |
++------------------+
+
+
+Mac-Pro-de-Vincent:~ vincent$ mysql5 -u cod_reader -h www.crystallography.net -e "show columns from data in cod"
++------------------+----------------------------------------------------------------------+------+-----+---------+-------+
+| Field            | Type                                                                 | Null | Key | Default | Extra |
++------------------+----------------------------------------------------------------------+------+-----+---------+-------+
+| file             | mediumint(7) unsigned                                                | NO   | PRI | 0       |       |
+| a                | double unsigned                                                      | YES  | MUL | NULL    |       |
+| siga             | float unsigned                                                       | YES  |     | NULL    |       |
+| b                | double unsigned                                                      | YES  | MUL | NULL    |       |
+| sigb             | float unsigned                                                       | YES  |     | NULL    |       |
+| c                | double unsigned                                                      | YES  | MUL | NULL    |       |
+| sigc             | float unsigned                                                       | YES  |     | NULL    |       |
+| alpha            | float unsigned                                                       | YES  | MUL | NULL    |       |
+| sigalpha         | float unsigned                                                       | YES  |     | NULL    |       |
+| beta             | float unsigned                                                       | YES  | MUL | NULL    |       |
+| sigbeta          | float unsigned                                                       | YES  |     | NULL    |       |
+| gamma            | float unsigned                                                       | YES  | MUL | NULL    |       |
+| siggamma         | float unsigned                                                       | YES  |     | NULL    |       |
+| vol              | float unsigned                                                       | YES  | MUL | NULL    |       |
+| sigvol           | float unsigned                                                       | YES  |     | NULL    |       |
+| celltemp         | float unsigned                                                       | YES  |     | NULL    |       |
+| sigcelltemp      | float unsigned                                                       | YES  |     | NULL    |       |
+| diffrtemp        | float unsigned                                                       | YES  |     | NULL    |       |
+| sigdiffrtemp     | float unsigned                                                       | YES  |     | NULL    |       |
+| cellpressure     | float unsigned                                                       | YES  |     | NULL    |       |
+| sigcellpressure  | float unsigned                                                       | YES  |     | NULL    |       |
+| diffrpressure    | float unsigned                                                       | YES  |     | NULL    |       |
+| sigdiffrpressure | float unsigned                                                       | YES  |     | NULL    |       |
+| thermalhist      | varchar(255)                                                         | YES  |     | NULL    |       |
+| pressurehist     | varchar(255)                                                         | YES  |     | NULL    |       |
+| nel              | varchar(4)                                                           | YES  | MUL | NULL    |       |
+| sg               | varchar(32)                                                          | YES  | MUL | NULL    |       |
+| sgHall           | varchar(64)                                                          | YES  | MUL | NULL    |       |
+| commonname       | varchar(1024)                                                        | YES  | MUL | NULL    |       |
+| chemname         | varchar(2048)                                                        | YES  | MUL | NULL    |       |
+| mineral          | varchar(255)                                                         | YES  | MUL | NULL    |       |
+| formula          | varchar(255)                                                         | YES  | MUL | NULL    |       |
+| calcformula      | varchar(255)                                                         | YES  | MUL | NULL    |       |
+| Z                | smallint(5) unsigned                                                 | YES  | MUL | NULL    |       |
+| Zprime           | float unsigned                                                       | YES  | MUL | NULL    |       |
+| acce_code        | char(6)                                                              | YES  | MUL | NULL    |       |
+| authors          | text                                                                 | YES  |     | NULL    |       |
+| title            | text                                                                 | YES  |     | NULL    |       |
+| journal          | varchar(255)                                                         | YES  | MUL | NULL    |       |
+| year             | smallint(4) unsigned                                                 | YES  |     | NULL    |       |
+| volume           | smallint(5) unsigned                                                 | YES  |     | NULL    |       |
+| issue            | varchar(10)                                                          | YES  |     | NULL    |       |
+| firstpage        | varchar(20)                                                          | YES  |     | NULL    |       |
+| lastpage         | varchar(20)                                                          | YES  |     | NULL    |       |
+| doi              | varchar(127)                                                         | YES  | MUL | NULL    |       |
+| method           | enum('single crystal','powder diffraction','theoretical prediction') | YES  | MUL | NULL    |       |
+| radiation        | varchar(32)                                                          | YES  |     | NULL    |       |
+| wavelength       | float unsigned                                                       | YES  |     | NULL    |       |
+| radType          | varchar(80)                                                          | YES  |     | NULL    |       |
+| radSymbol        | varchar(20)                                                          | YES  |     | NULL    |       |
+| Rall             | float unsigned                                                       | YES  |     | NULL    |       |
+| Robs             | float unsigned                                                       | YES  |     | NULL    |       |
+| Rref             | float unsigned                                                       | YES  |     | NULL    |       |
+| wRall            | float unsigned                                                       | YES  |     | NULL    |       |
+| wRobs            | float unsigned                                                       | YES  |     | NULL    |       |
+| wRref            | float unsigned                                                       | YES  |     | NULL    |       |
+| RFsqd            | float unsigned                                                       | YES  |     | NULL    |       |
+| RI               | float unsigned                                                       | YES  |     | NULL    |       |
+| gofall           | float                                                                | YES  |     | NULL    |       |
+| gofobs           | float                                                                | YES  |     | NULL    |       |
+| gofgt            | float                                                                | YES  |     | NULL    |       |
+| duplicateof      | mediumint(7) unsigned                                                | YES  |     | NULL    |       |
+| optimal          | mediumint(7) unsigned                                                | YES  |     | NULL    |       |
+| status           | enum('warnings','errors','retracted')                                | YES  |     | NULL    |       |
+| flags            | set('has coordinates','has disorder','has Fobs')                     | YES  |     | NULL    |       |
+| text             | text                                                                 | NO   | MUL | NULL    |       |
+| svnrevision      | int(11)                                                              | YES  | MUL | NULL    |       |
+| date             | date                                                                 | YES  | MUL | NULL    |       |
+| time             | time                                                                 | YES  | MUL | NULL    |       |
+| onhold           | date                                                                 | YES  |     | NULL    |       |
++------------------+----------------------------------------------------------------------+------+-----+---------+-------+
+
+mysql5 -u cod_reader -h www.crystallography.net -e "select formula from data where formula like '%H2 O2%' " cod
++------------------------------------------------+
+| formula                                        |
++------------------------------------------------+
+| - Al F3 H2 O2 Pb -                             |
+| - Al0.55 B4 Ca2.616 Fe0.45 H2 O24 Si4 Y2.622 - |
+| - Al2 Be2 Ca4 H2 O28 Si9 -                     |
+| - As F10 H2 O2 Tc -                            |
+| - B H2 O2 -                                    |
+| - B6 Ba Eu6 H2 O26 Si3 -                       |
+| - Ba3.2 H2 O25 Si4 Sr0.8 Ti6 -                 |
+| - Ba4 H2 O25 Si4 Ti6 -                         |
+| - Be H2 O2 -                                   |
+| - Be H2 O2 -                                   |
+| - Be H2 O2 -                                   |
+| - Be H2 O2 -                                   |
+| - Be H2 O2 -                                   |
+| - C0.5 H2 O2.5 P0.5 V0.5 -                     |
+
+
+mysql5 -u cod_reader -h www.crystallography.net -e "select formula from data where formula rlike 'H2 O2' " cod
++------------------------------------------------+
+| formula                                        |
++------------------------------------------------+
+| - Al F3 H2 O2 Pb -                             |
+| - Al0.55 B4 Ca2.616 Fe0.45 H2 O24 Si4 Y2.622 - |
+| - Al2 Be2 Ca4 H2 O28 Si9 -                     |
+| - As F10 H2 O2 Tc -                            |
+| - B H2 O2 -                                    |
+| - B6 Ba Eu6 H2 O26 Si3 -                       |
+| - Ba3.2 H2 O25 Si4 Sr0.8 Ti6 -                 |
+| - Ba4 H2 O25 Si4 Ti6 -                         |
+| - Be H2 O2 -                                   |
+
+
+mysql5 -u cod_reader -h www.crystallography.net -e "select formula from data where formula rlike 'H[[:digit:]]' and formula rlike 'O2' " cod
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| formula                                                                                                                                                                            |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| - Ag0.74 B2 H13.26 N3 O24 P5 U2 -                                                                                                                                                  |
+| - Ag2 H2 K6 O2 S9 Sn3 -                                                                                                                                                            |
+| - Ag4 H4 Li2 O20 P6 -                                                                                                                                                              |
+| - Al Be3 Ca4 H3 O28 Si9 -                                                                                                                                                          |
+| - Al Ca1.66 F0.2 Fe1.33 H2 K0.015 Mg3.49 Mn0.02 Na0.625 O23.8 Si7.28 Ti0.06 -                                                                                                      |
+| - Al Ca3 H34 O24.5 S1.5 -                                                                                                                                                          |
+| - Al Cl Cu H28 O22 S2 -                                                                                                                                                            |
+| - Al Cl4 Cu4 H16 O26 Pb6 S2 Sb -                                                                                                                                                   |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+| - Al D0.744 H0.256 O2 -                                                                                                                                                            |
+
+
+mysql5 -u cod_reader -h www.crystallography.net -e "select formula from data where (formula rlike '[[:blank:]]H[[:digit:]]' or formula rlike '[[:blank:]]H[[:blank:]]') and (formula rlike '[[:blank:]]O[[:digit:]]' or formula rlike '[[:blank:]]O[[:blank:]]') and nel=2 " cod
++-----------+
+| formula   |
++-----------+
+| - H2 O2 - |
+| - H2 O -  |
+| - H2 O -  |
+| - H2 O -  |
+| - H2 O -  |
+| - H2 O -  |
+| - H O -   |
+| - H2 O -  |
+| - H2 O -  |
+| - H2 O -  |
+| - H2 O -  |
+| - H7 O4 - |
+| - H2 O -  |
++-----------+
+
+
+Mac-Pro-de-Vincent:~ vincent$ mysql5 -u cod_reader -h www.crystallography.net -e "select formula from data where (formula rlike '[[:blank:]]H[[:digit:]]' or formula rlike '[[:blank:]]H[[:blank:]]') and (formula rlike '[[:blank:]]O[[:digit:]]' or formula rlike '[[:blank:]]O[[:blank:]]') and nel>=2 and nel<=3 " cod
++----------------------------------+
+| formula                          |
++----------------------------------+
+| - C13 H22 O3 -                   |
+| - Ca H2 O2 -                     |
+| - H2 Mg O2 -                     |
+| - Al H3 O3 -                     |
+| - H0.572 O2 Ti0.858 -            |
+| - H Nb O3 -                      |
+| - H Nb O3 -                      |
+
+
+Mac-Pro-de-Vincent:~ vincent$ mysql5 -u cod_reader -h www.crystallography.net -e "select formula from data where (formula rlike '[[:blank:]]H[[:digit:]]' or formula rlike '[[:blank:]]H[[:blank:]]') and (formula rlike '[[:blank:]]O[[:digit:]]' or formula rlike '[[:blank:]]O[[:blank:]]') and nel>=2 and nel<=3 order by formula" cod
++----------------------------------+
+| formula                          |
++----------------------------------+
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+| - Al H O2 -                      |
+
+
+mysql5 -u cod_reader -h www.crystallography.net -e "select formula from data where title like 'ribose' " cod
+
+
+# After MySQL, libiodbc and mysql-connector install: success
+bin/iodbctest "driver=/Users/vincent/dev/Fox/static-libs/lib/libmyodbc5a.so;server=www.crystallography.net;user=cod_reader;database=cod;password=;"

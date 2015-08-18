@@ -1,0 +1,6 @@
+Install:
+- python-mysql and python-sqlite
+- Optionnal: mysql (command line client, not server)
+
+MacOSX+macports: 
+    port install mysql56 py27-mysql py27-sqlite
