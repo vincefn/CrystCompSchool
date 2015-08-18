@@ -49,3 +49,5 @@ cursor.fetchall()
 #C++ example ?
 #See Fox.cpp around line 2800 :
 # https://github.com/vincefn/objcryst/blob/master/Fox/src/Fox.cpp#L2800
+
+# TODO: local database using sqlite
