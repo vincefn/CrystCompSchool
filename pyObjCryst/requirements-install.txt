@@ -1,0 +1,24 @@
+* Mac OS X Yosemite + Macports
+
+Assumes standard python+scientific libraries installed
+Need scons & boost.python:
+	sudo port install boost scons
+
+Install libobjcryst:
+    git clone https://github.com/vincefn/libobjcryst.git
+    sudo CFLAGS="-I/opt/local/include -w" LDFLAGS="-L/opt/local/lib/" scons prefix=/opt/local/ -j4 install
+Install pyobjcryst:
+    git clone https://github.com/vincefn/pyobjcryst.git
+    # the following line makes sure it is macport's python which is used, and the correct prefix (don't use prefix=/opt/local)
+    sudo port select --set python python27
+    sudo CFLAGS="-I/opt/local/include -w" LDFLAGS="-L/opt/local/lib/" scons -j4 install
+
+
+* Linux (tested on Mint, should work on Debian/ubuntu etc..)
+
+Scons & boost & python-dev:
+	sudo apt-get install scons libboost-python-dev python-dev python-matplotlib python-numpy python-setuptools
+
+Install libobjcryst:
+    git clone https://github.com/vincefn/libobjcryst.git
+    sudo CFLAGS="-w" scons -j4 install
