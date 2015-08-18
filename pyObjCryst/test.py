@@ -56,6 +56,9 @@ p.AddPowderPatternComponent(b)
 b.Print()
 b.UnFixAllPar()
 b.OptimizeBayesianBackground()
+from pylab import plot,pi
+plot(p.GetPowderPatternX()*180/pi,p.GetPowderPatternObs())
+plot(p.GetPowderPatternX()*180/pi,p.GetPowderPatternCalc())
 
 pd=pyobjcryst.powderpatterndiffraction.PowderPatternDiffraction()
 pd.SetCrystal(c)
@@ -74,16 +77,74 @@ p.Prepare()
 pd.SetReflectionProfilePar(pyobjcryst.powderpatterndiffraction.ReflectionProfileType.PROFILE_PSEUDO_VOIGT,0.0000001)
 p.FitScaleFactorForIntegratedRw()
 
-from pylab import plot,pi
+#from pylab import plot,pi
 plot(p.GetPowderPatternX()*180/pi,p.GetPowderPatternObs())
 plot(p.GetPowderPatternX()*180/pi,p.GetPowderPatternCalc())
+
+pd.SetExtractionMode(True,True)
+pd.ExtractLeBail(10)
+
+# LSQ
+lsq=pyobjcryst.lsqnumobj.LSQNumObj()
+lsq.SetRefinedObj(p)
+lsq.GetCompiledRefinedObj().Print()
+lsq.PrepareRefParList(True)
+lsq.GetCompiledRefinedObj().Print()
+lsq.SetRefinedObj(p,0,True,True)
+lsq.PrepareRefParList(True)
+lsq.GetCompiledRefinedObj().Print()
+lsqr=lsq.GetCompiledRefinedObj()
+
+p.SetMaxSinThetaOvLambda(0.5)
+
+lsqr.FixAllPar()
+lsqr.Print()
+lsq.SetParIsFixed("Zero",False)
+lsq.SetParIsFixed("2ThetaDispl",False)
+lsq.SetParIsFixed("2ThetaTransp",False)
+lsq.Refine(20,True)
+
+lsq.SetParIsFixed("a",False)
+lsq.SetParIsFixed("b",False)
+lsq.SetParIsFixed("c",False)
+lsq.SetParIsFixed("alpha",False)
+lsq.SetParIsFixed("beta",False)
+lsq.SetParIsFixed("gamma",False)
+lsq.SetParIsFixed("W",False)
+lsq.Refine(20,True)
+lsq.Refine(20,True)
+lsq.SetParIsFixed("U",False)
+lsq.SetParIsFixed("V",False)
+lsq.Refine(20,True)
+lsq.Refine(20,True)
+lsq.SetParIsFixed("Eta0",False)
+lsq.Refine(20,True)
+lsq.SetParIsFixed("Eta1",False)
+lsq.Refine(20,True)
+lsq.SetParIsFixed("Asym0",False)
+lsq.SetParIsFixed("Asym1",False)
+lsq.Refine(20,True)
+
+b.GetPar(0)
+b.GetPar(0).GetType()
+t=b.GetPar(0).GetType()
+t.GetName()
+lsq.SetParIsFixed(t,False)
+b.FixParametersBeyondMaxresolution(lsq)
+lsqr.Print()
+lsq.Refine(20,True)
+
+pd.ExtractLeBail(10)
+lsq.Refine(20,True)
+
+
+##############################
+pd.SetExtractionMode(False)
+c.RandomizeConfiguration()
 
 m=pyobjcryst.montecarloobj.MonteCarloObj()
 m.AddRefinableObj(c)
 m.AddRefinableObj(p)
 m.Optimize(100000)
 
-
-# LSQ
-lsq=pyobjcryst.lsqnumobj.LSQNumObj()
 
