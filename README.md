@@ -6,7 +6,7 @@ Tutorials for the crystallographic computing school
 The ObjCryst++ C++ library (http://objcryst.sf.net) was developed for ab initio structure solution from powder diffraction. In this tutorial we will first give a quick tour of the C++ library capabilities. Then we will use the python interface to exploit this library, including: creating or importing crystal structure from CIF, calculating & displaying powder patterns, performing a global optimization.
 
 Keywords: python/C++, small molecules/inorganic structures, powder diffraction
-Requirements: install python+libobjcryst+pyobjcryst+matplotlib, optional install of Fox, good python knowledge
+Requirements: install python+ipython+libobjcryst+pyobjcryst+matplotlib, optional install of Fox, good python knowledge, C++ optional
 
 
 # Tutorial #2: global optimization (1h to 1h30 ?)
