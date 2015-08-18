@@ -1,0 +1,70 @@
+1 - Introduction to Fox/ObjCryst++ ======================================
+
+    website: 
+        http://objcryst.sf.net
+        or http://fox.vincefn.net
+    
+    source code:
+        http://sourceforge.net/p/objcryst/git/
+        or https://github.com/vincefn/objcryst
+    
+    API documentation (a bit out-of-date):
+        http://vincefn.net/ObjCryst/
+    
+    Quick Fox demonstration
+    
+2 - Using ObjCryst++ outside of Fox ======================================
+
+    Using the C++ API -> in the code repository, there are a few (outdated) examples in ObjCryst/examples
+    
+    Using the pyobjcryst API: the python interface was developed partly for Pair Distribution Function (PDF) analysis as part of the diffpy project (see http://www.diffpy.org). PDF analysis will not be covered during this tutorial
+    
+    NB: I added the diffraction and optimisation classes early this week, so they are incomplete and a bit rough..
+    
+3 - Installing libobjcryst and pyobjcryst ======================================
+
+    See file : requirements-install.txt
+    
+4 - Starting pyobjcryst: Crystal creation ======================================
+    NB: Use ipython !
+
+# Create a crystal object:
+c=pyobjcryst.crystal.Crystal()
+
+# Documentation on the Crystal object (or use ipython's auto-completion):
+help(pyobjcryst.crystal.Crystal)
+
+# Basic parameters info for the object
+c.GetNbPar()
+c.Print()
+#-> list of parameters
+
+# Create a 'scattering power' (element) and add it to the Crystal
+pow0=pyobjcryst.scatteringpower.ScatteringPowerAtom()
+c.AddScatteringPower(pow0)
+# Create an atom and add it to the Crystal
+a=pyobjcryst.atom.Atom(0,0,0,"Ca0",pow0)
+c.AddScatterer(a)
+# And a second one:
+c.AddScatterer(pyobjcryst.atom.Atom(0,0,0,"Ca1",pow0))
+
+c.PrintMinDistanceTable()
+
+# Move atoms a bit:
+c.RandomizeConfiguration()
+c.PrintMinDistanceTable()
+
+# export to CIF:
+c.CIFOutput(open('out.cif','w'))
+
+# Examine & change the spacegroup
+s=c.GetSpaceGroup()
+s.ChangeSpaceGroup('Ia3d')
+
+5 - Single Crystal data ======================================
+
+6 - Powder Diffraction data ======================================
+
+7 - Global Optimization ======================================
+
+

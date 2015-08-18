@@ -1,6 +1,6 @@
 * Mac OS X Yosemite + Macports
 
-Assumes standard python+scientific libraries installed
+Assumes standard python+scientific libraries installed (python 2.7, ipython, numpy, scipy)
 Need scons & boost.python:
 	sudo port install boost scons
 
