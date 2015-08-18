@@ -13,7 +13,7 @@ import os
 #Get the data from IUCr journals (once)
 if True:
   WGET="wget -q -O-"
-  if platform.uname()[0]=='Darwin': WGET="curl -O"
+  if platform.uname()[0]=='Darwin': WGET="curl "
   # http://scripts.iucr.org/cgi-bin/paper?dt3034
   os.system("%s 'http://scripts.iucr.org/cgi-bin/sendcif?dt3034sup1' > dt3034.cif"%WGET)
   os.system("%s 'http://journals.iucr.org/c/issues/2015/09/00/dt3034/dt3034Isup2.hkl' > dt3034Isup2.hkl"%WGET)
