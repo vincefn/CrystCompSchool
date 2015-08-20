@@ -63,8 +63,7 @@ s.ChangeSpaceGroup('Ia3d')
 
 5 - Single Crystal data ======================================
 
-6 - Powder Diffraction data ======================================
+6 - Powder Diffraction data + Global Optimization ======================================
 
-7 - Global Optimization ======================================
 
 
