@@ -50,4 +50,11 @@ cursor.fetchall()
 #See Fox.cpp around line 2800 :
 # https://github.com/vincefn/objcryst/blob/master/Fox/src/Fox.cpp#L2800
 
-# TODO: local database using sqlite
+# local database using sqlite###############################
+import sqlite3
+db0 = sqlite3.connect('tmp.db')
+db0_curs = db0.cursor()
+db0_curs.execute("CREATE TABLE IF NOT EXISTS Temp (epoch integer unsigned primary key, temperature float)")
+
+db0_curs.execute("INSERT INTO Temp (epoch, temperature) VALUES (%d, %f) "%(int(time.time()),15.4))
+db0_curs.execute("DELETE FROM Temp WHERE epoch=%d"%(int(time.time())))
