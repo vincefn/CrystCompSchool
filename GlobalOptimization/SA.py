@@ -3,6 +3,8 @@ import numpy as np
 import model
 from pylab import plot,legend
 
+# Warning: this only works with scipy before 0.16 (1 year old): optimize.anneal has now been removed
+
 nbatoms=10
 x,y,z=model.genatoms(nbatoms)
 h,k,l=model.genrefl(3)
@@ -34,4 +36,7 @@ icalc=scale*model.Calc3(xyz[0:n],xyz[n:n*2],xyz[n*2:n*3],h,k,l)
 
 xyz0=np.random.uniform(0,1,len(x)*3)
 
-xyz1=optimize.anneal(chi2,xyz0,schedule='fast')
+xyz1=optimize.anneal(chi2,xyz0)
+
+
+

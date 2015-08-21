@@ -78,7 +78,7 @@ def PT(p,func_chi2,nbtrial=1e5,nbworld=10,cost_history={}):
 
 
 
-nbatoms=10
+nbatoms=5
 x,y,z=model.genatoms(nbatoms)
 h,k,l=model.genrefl(5)
 nhkl=len(h)
