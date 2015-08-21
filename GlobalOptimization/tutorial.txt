@@ -1,0 +1,15 @@
+1 Introduction: example of powder diffraction / Global optimization problems
+
+2 Modeling
+Example data: N atoms with some single crystal diffraction data (M reflection)
+
+3 Simulated annealing
+Example: scipy ?
+
+4 Genetic algorithms / Differential Evolution
+Example: hand-coded
+
+5 Parallel tempering
+Example: hand-coded
+
+
