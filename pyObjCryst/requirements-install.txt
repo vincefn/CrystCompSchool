@@ -22,3 +22,7 @@ Scons & boost & python-dev:
 Install libobjcryst:
     git clone https://github.com/vincefn/libobjcryst.git
     sudo CFLAGS="-w" scons -j4 install
+
+Install pyobjcryst:
+    git clone https://github.com/vincefn/pyobjcryst.git
+    sudo CFLAGS="-w" scons -j4 install
