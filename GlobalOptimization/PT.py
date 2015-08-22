@@ -1,4 +1,5 @@
 import model
+import numpy
 from pylab import *
 
 def PT(p,func_chi2,nbtrial=1e5,nbworld=10,cost_history={}):
@@ -11,11 +12,8 @@ def PT(p,func_chi2,nbtrial=1e5,nbworld=10,cost_history={}):
     for i in xrange(nbworld):cost_history[i]=[[],[]]
   nbtrial0=nbtrial
   nbpar=len(p)
-  duz=linspace(1e-3,1e-1,nbworld)
-  dpar={}
   temperature=linspace(100,10000,nbworld).astype(float32)
   #dpar=0.02 # Base displacement amplitude for parameters
-  amplitude=(linspace(.05,.5,nbworld)**2).astype(float32)
   amplitude_min=0.0002
   amplitude_max=0.25
   amplitude=amplitude_min*(amplitude_max/amplitude_min)**(arange(nbworld,dtype=float32)/(nbworld-1))
@@ -26,7 +24,10 @@ def PT(p,func_chi2,nbtrial=1e5,nbworld=10,cost_history={}):
   cost=ones(nbworld)*bestcost
   p_world={}
   for world in xrange(nbworld):
-    p_world[world]=p.copy()
+    if world==0:
+      p_world[world]=p.copy()
+    else:
+      p_world[world]=numpy.random.uniform(0,1,len(p))
   p1=p.copy()
   nbTestPerWorld=200
   while nbtrial>0:
@@ -107,8 +108,8 @@ def chi2(xyz,doplot=False):
 xyz0=np.random.uniform(0,1,len(x)*3)
 cost_history={}
 chi2(xyz0)
-xyz1=PT(xyz0,chi2,nbtrial=3e5,nbworld=30,cost_history=cost_history)
+xyz1=PT(xyz0,chi2,nbtrial=3e5,nbworld=10,cost_history=cost_history)
 
 x,y=cost_history['best']
 semilogy(x,y)
-xyz1=PT(xyz1,chi2,nbtrial=3e5,nbworld=30,cost_history=cost_history)
+xyz1=PT(xyz1,chi2,nbtrial=5e5,nbworld=30,cost_history=cost_history)
