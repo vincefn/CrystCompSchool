@@ -2,6 +2,7 @@ import model
 import numpy
 import time
 from pylab import *
+from scipy import optimize
 
 def DE(nbgeneration,p0,func_chi2,cr=0.5,f=0.8,nbworld=500,strategy="DE/best/1/exp",prefix=None):
    nbpar=len(p0)
@@ -106,5 +107,6 @@ def chi2(xyz,doplot=False):
 xyz0=np.random.uniform(0,1,len(x)*3)
 cost_history={}
 chi2(xyz0)
-xyz1=DE(500,xyz0,chi2,cr=0.7,f=0.8,nbworld=500,strategy="DE/rand-to-best/1/exp")
+#xyz1=DE(500,xyz0,chi2,cr=0.7,f=0.8,nbworld=500,strategy="DE/rand-to-best/1/exp")
 
+res=optimize.differential_evolution(chi2, [(0,1)]*len(xyz0), strategy='best1bin', maxiter=1000)
